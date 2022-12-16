@@ -16,7 +16,9 @@
 		"check-types": "tsc --noEmit",
 		"check-unused-exports": "ts-prune -e",
 		"lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx && ts-prune -e",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"clone-to-production": "sanity dataset export staging staging.tar.gz && sanity dataset import staging.tar.gz production --replace && rm -rf staging.tar.gz",
+		"clone-to-staging": "sanity dataset export production production.tar.gz && sanity dataset import production.tar.gz staging --replace && rm -rf production.tar.gz"
 	},
 	"dependencies": {
 		"@sanity/color-input": "^3.0.1",

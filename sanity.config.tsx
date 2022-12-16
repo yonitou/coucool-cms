@@ -1,18 +1,13 @@
-import { defineConfig } from "sanity";
+import { defineConfig, definePlugin } from "sanity";
 import { deskTool } from "sanity/desk";
 import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { CogIcon, MasterDetailIcon } from "@sanity/icons";
+import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
 
-// ts-prune-ignore-next
-export default defineConfig({
-	name: "default",
-	title: "coucool-cms",
-	projectId: "4durckeb",
-	dataset: "production",
-
+const sharedConfig = definePlugin({
+	name: "sharedConfig",
 	plugins: [
 		colorInput(),
 		deskTool({
@@ -35,8 +30,31 @@ export default defineConfig({
 		}),
 		visionTool(),
 	],
-
 	schema: {
 		types: schemaTypes,
 	},
 });
+
+// ts-prune-ignore-next
+export default defineConfig([
+	{
+		name: "production",
+		title: "Coucool - Public",
+		icon: () => <RocketIcon onResize={undefined} onResizeCapture={undefined} />,
+		projectId: "4durckeb",
+		dataset: "production",
+		basePath: "/production",
+		subtitle: "production",
+		plugins: [sharedConfig()],
+	},
+	{
+		name: "staging",
+		title: "Coucool - Test",
+		icon: () => <UserIcon onResize={undefined} onResizeCapture={undefined} />,
+		projectId: "4durckeb",
+		dataset: "staging",
+		basePath: "/staging",
+		subtitle: "staging",
+		plugins: [sharedConfig()],
+	},
+]);
