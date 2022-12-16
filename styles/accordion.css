@@ -1,0 +1,4 @@
+div[data-list-item='arrow'] > div::before {
+  content: '⇀';
+  margin-left: 1rem;
+}
