@@ -19,6 +19,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@sanity/color-input": "^3.0.1",
 		"@sanity/icons": "^2.1.0",
 		"@sanity/orderable-document-list": "^1.0.2",
 		"@sanity/ui": "^1.0.1",
@@ -26,11 +27,11 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sanity": "^3.0.0",
+		"sanity-pills": "^1.13.0",
 		"styled-components": "^5.2.0",
 		"ts-prune": "^0.10.3"
 	},
 	"devDependencies": {
-		"eslint-config-airbnb": "^19.0.4",
 		"@sanity/eslint-config-studio": "^2.0.1",
 		"@types/react": "^16.9.56",
 		"@types/react-dom": "^16.9.9",
@@ -38,6 +39,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
 		"@typescript-eslint/parser": "^5.0.0",
 		"eslint": "^8.6.0",
+		"eslint-config-airbnb": "^19.0.4",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-import-resolver-typescript": "^2.5.0",
 		"eslint-plugin-import": "^2.25.2",

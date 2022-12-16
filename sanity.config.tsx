@@ -1,5 +1,6 @@
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
+import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
@@ -9,11 +10,11 @@ import { CogIcon, MasterDetailIcon } from "@sanity/icons";
 export default defineConfig({
 	name: "default",
 	title: "coucool-cms",
-
 	projectId: "4durckeb",
 	dataset: "production",
 
 	plugins: [
+		colorInput(),
 		deskTool({
 			structure: (S, context) =>
 				S.list()

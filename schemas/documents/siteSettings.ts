@@ -1,23 +1,69 @@
 import { defineField, defineType } from "sanity";
 import blockEditor from "../blockEditor";
+import { createImageField, fields } from "sanity-pills";
 
 export default defineType({
+	groups: [
+		{
+			name: "seo",
+			title: "SEO",
+		},
+	],
 	name: "siteSettings",
 	title: "Site Settings",
 	type: "document",
 	fields: [
 		{
 			name: "title",
-			title: "Titre",
+			title: "Header",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 		},
+		{
+			name: "seoTitle",
+			title: "Titre",
+			type: "string",
+			validation: (Rule) => Rule.required(),
+			group: "seo",
+		},
+		{
+			name: "seoDescription",
+			title: "Description",
+			type: "string",
+			validation: (Rule) => Rule.required(),
+			group: "seo",
+		},
+		{
+			name: "color",
+			title: "Couleur dominante",
+			type: "color",
+			group: "seo",
+			validation: (Rule) => Rule.required(),
+		},
+		...fields({
+			ogImage: createImageField({
+				title: "Image de partage (1200px x 630px)",
+				group: "seo",
+				options: {
+					hotspot: false,
+				},
+				validations: {
+					required: true,
+					minWidth: 1200,
+					minHeight: 630,
+					maxWidth: 1200,
+					maxHeight: 630,
+				},
+			}),
+		}),
+
 		{
 			name: "eventLink",
 			title: "Lien vers l'évènement",
 			type: "url",
 			validation: (Rule) => Rule.required().uri(),
 		},
+
 		{
 			name: "facebook",
 			title: "Lien vers la page Facebook",
