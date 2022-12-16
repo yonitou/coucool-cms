@@ -1,13 +1,5 @@
-import {EnvelopeIcon, LaunchIcon} from '@sanity/icons'
+import {LaunchIcon} from '@sanity/icons'
 import {defineType} from 'sanity'
-
-const ExternalLinkRender = ({children, href}: {children: JSX.Element; href: string}) => {
-  return (
-    <span>
-      {children} &nbsp;{href?.startsWith('mailto:') ? <EnvelopeIcon /> : <LaunchIcon />}
-    </span>
-  )
-}
 
 export default defineType({
   name: 'externalLink',
@@ -33,7 +25,4 @@ export default defineType({
       initialValue: true,
     },
   ],
-  blockEditor: {
-    render: ExternalLinkRender,
-  },
 })

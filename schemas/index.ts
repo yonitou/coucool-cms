@@ -1,8 +1,8 @@
-import accordion from './accordion'
-import edition from './edition'
-import externalLink from './externalLink'
-import internalLink from './internalLink'
-import section from './section'
-import siteSettings from './siteSettings'
+import accordion from './objects/accordion'
+import edition from './objects/edition'
+import externalLink from './objects/externalLink'
+import internalLink from './objects/internalLink'
+import section from './documents/section'
+import siteSettings from './documents/siteSettings'
 
 export const schemaTypes = [internalLink, externalLink, edition, section, accordion, siteSettings]

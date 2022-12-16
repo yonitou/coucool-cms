@@ -1,13 +1,6 @@
 import {LinkIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
-const InternalLinkRender = ({children}: {children: JSX.Element}) => (
-  <span>
-    {children} &nbsp;
-    <LinkIcon />
-  </span>
-)
-
 export default defineType({
   name: 'internalLink',
   type: 'object',
@@ -26,7 +19,4 @@ export default defineType({
       ],
     }),
   ],
-  blockEditor: {
-    render: InternalLinkRender,
-  },
 })

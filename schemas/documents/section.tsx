@@ -1,6 +1,6 @@
-import {ArrowRightIcon} from '@sanity/icons'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 import {defineType, defineField, SortOrdering} from 'sanity'
+import blockEditor from '../blockEditor'
 
 export default defineType({
   name: 'section',
@@ -32,45 +32,7 @@ export default defineType({
       of: [
         {
           type: 'block',
-          marks: {
-            annotations: [
-              {
-                name: 'internalLink',
-                type: 'internalLink',
-              },
-              {
-                name: 'externalLink',
-                type: 'externalLink',
-              },
-            ],
-          },
-          styles: [
-            {
-              title: 'Normal',
-              value: 'normal',
-            },
-            {
-              title: 'H3',
-              value: 'h3',
-            },
-          ],
-          lists: [
-            {
-              title: 'Puces',
-              value: 'bullet',
-            },
-            {
-              title: 'Numéros',
-              value: 'number',
-            },
-            {
-              title: 'Fléchée',
-              value: 'arrow',
-              blockEditor: {
-                icon: ArrowRightIcon,
-              },
-            },
-          ],
+          ...blockEditor,
         },
         defineField({
           name: 'accordion',
