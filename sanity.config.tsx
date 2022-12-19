@@ -8,6 +8,24 @@ import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
 
 const sharedConfig = definePlugin({
 	name: "sharedConfig",
+	document: {
+		newDocumentOptions: (prev, { creationContext }) => {
+			if (creationContext.type === "global") {
+				return prev.filter((templateItem) => templateItem.templateId != "siteSettings");
+			}
+			return prev;
+		},
+		actions: (prev, context) => {
+			return context.schemaType === "siteSettings"
+				? [
+						...prev.filter(
+							(originalAction) =>
+								originalAction.action !== "delete" && originalAction.action !== "duplicate"
+						),
+				  ]
+				: prev;
+		},
+	},
 	plugins: [
 		colorInput(),
 		deskTool({
