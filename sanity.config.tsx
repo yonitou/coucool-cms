@@ -16,14 +16,15 @@ const sharedConfig = definePlugin({
 			return prev;
 		},
 		actions: (prev, context) => {
+			const actionsWithoutUnpublish = prev.filter((a) => a.action !== "unpublish");
 			return context.schemaType === "siteSettings"
 				? [
-						...prev.filter(
+						...actionsWithoutUnpublish.filter(
 							(originalAction) =>
 								originalAction.action !== "delete" && originalAction.action !== "duplicate"
 						),
 				  ]
-				: prev;
+				: actionsWithoutUnpublish;
 		},
 	},
 	plugins: [

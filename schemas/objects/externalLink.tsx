@@ -1,5 +1,5 @@
 import { LaunchIcon } from "@sanity/icons";
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "externalLink",
@@ -7,7 +7,7 @@ export default defineType({
 	title: "Lien externe",
 	icon: () => <LaunchIcon onResize={undefined} onResizeCapture={undefined} />,
 	fields: [
-		{
+		defineField({
 			name: "href",
 			validation: (Rule) =>
 				Rule.required().uri({
@@ -17,12 +17,12 @@ export default defineType({
 			title: "URL",
 			description:
 				"Si vous voulez que le lien redirige vers un envoi d'email à une adresse mail, il faut l'écrire comme ceci : mailto:eros@cou.cool",
-		},
-		{
+		}),
+		defineField({
 			title: "Ouvrir dans un nouvel onglet",
 			name: "blank",
 			type: "boolean",
 			initialValue: true,
-		},
+		}),
 	],
 });

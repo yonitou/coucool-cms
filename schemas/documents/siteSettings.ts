@@ -13,33 +13,33 @@ export default defineType({
 	title: "Site Settings",
 	type: "document",
 	fields: [
-		{
+		defineField({
 			name: "title",
 			title: "Header",
 			type: "string",
 			validation: (Rule) => Rule.required(),
-		},
-		{
+		}),
+		defineField({
 			name: "seoTitle",
 			title: "Titre",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			group: "seo",
-		},
-		{
+		}),
+		defineField({
 			name: "seoDescription",
 			title: "Description",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			group: "seo",
-		},
-		{
+		}),
+		defineField({
 			name: "color",
 			title: "Couleur dominante",
 			type: "color",
 			group: "seo",
 			validation: (Rule) => Rule.required(),
-		},
+		}),
 		...fields({
 			ogImage: createImageField({
 				title: "Image de partage (1200px x 630px)",
@@ -57,25 +57,25 @@ export default defineType({
 			}),
 		}),
 
-		{
+		defineField({
 			name: "eventLink",
 			title: "Lien vers l'évènement",
 			type: "url",
-			validation: (Rule) => Rule.required().uri(),
-		},
+			validation: (Rule) => Rule.required().uri({}),
+		}),
 
-		{
+		defineField({
 			name: "facebook",
 			title: "Lien vers la page Facebook",
 			type: "url",
-			validation: (Rule) => Rule.required().uri(),
-		},
-		{
+			validation: (Rule) => Rule.required().uri({}),
+		}),
+		defineField({
 			name: "instagram",
 			title: "Lien vers la page Instagram",
 			type: "url",
-			validation: (Rule) => Rule.required().uri(),
-		},
+			validation: (Rule) => Rule.required().uri({}),
+		}),
 		defineField({
 			name: "content",
 			type: "array",

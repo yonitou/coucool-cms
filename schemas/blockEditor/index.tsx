@@ -24,16 +24,12 @@ export default {
 			{
 				name: "internalLink",
 				type: "internalLink",
-				blockEditor: {
-					render: InternalLinkRender,
-				},
+				component: InternalLinkRender,
 			},
 			{
 				name: "externalLink",
 				type: "externalLink",
-				blockEditor: {
-					render: ExternalLinkRender,
-				},
+				component: ExternalLinkRender,
 			},
 		],
 	},
@@ -63,9 +59,7 @@ export default {
 		{
 			title: "Fléchée",
 			value: "arrow",
-			blockEditor: {
-				icon: ArrowRightIcon,
-			},
+			icon: ArrowRightIcon,
 		},
 	],
 };
