@@ -79,6 +79,7 @@ div[data-list-item="arrow"] > div::before {
 .section-title-preview {
 	font-size: 4rem;
 	margin: 0;
+	font-weight: unset;
 	text-align: center;
 }
 
