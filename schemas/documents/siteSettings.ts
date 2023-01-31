@@ -16,7 +16,8 @@ export default defineType({
 		defineField({
 			name: "title",
 			title: "Header",
-			type: "string",
+			type: "text",
+			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({

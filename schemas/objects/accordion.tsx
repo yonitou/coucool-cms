@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { StackIcon } from "@sanity/icons";
-import "../../styles/accordion.css";
+import "../../styles/global.css";
 import blockEditor from "../blockEditor";
 
 export default defineType({
