@@ -1,5 +1,4 @@
 import { defineField, defineType } from "sanity";
-import blockEditor from "../blockEditor";
 import { createImageField, fields } from "sanity-pills";
 
 export default defineType({
@@ -76,18 +75,6 @@ export default defineType({
 			title: "Lien vers la page Instagram",
 			type: "url",
 			validation: (Rule) => Rule.required().uri({}),
-		}),
-		defineField({
-			name: "content",
-			type: "array",
-			title: "Sous-titre",
-			validation: (Rule) => Rule.required(),
-			of: [
-				{
-					type: "block",
-					...blockEditor,
-				},
-			],
 		}),
 	],
 });
