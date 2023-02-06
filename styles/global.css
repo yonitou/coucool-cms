@@ -75,14 +75,3 @@ div[data-list-item="arrow"] > div::before {
 	font-style: normal;
 	font-display: swap;
 }
-
-.section-title-preview {
-	font-size: 4rem;
-	margin: 0;
-	font-weight: unset;
-	text-align: center;
-}
-
-.preview-letter {
-	text-transform: uppercase;
-}

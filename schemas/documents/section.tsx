@@ -4,6 +4,20 @@ import blockEditor from "../blockEditor";
 import { fontEnum } from "../types/fontEnum";
 import "../../styles/global.css";
 import { fontSizeMultiplier } from "../../utils/fontSizeMultiplier";
+import styled from "styled-components";
+
+const SectionTitlePreview = styled.h2`
+	font-size: 4rem;
+	margin: 0;
+	font-weight: unset;
+	text-align: center;
+`;
+
+const PreviewLetter = styled.span<{ fontFamily: fontEnum }>`
+	text-transform: uppercase;
+	fontfamily: ${(props) => props.fontFamily};
+	font-size: ${(props) => `${fontSizeMultiplier[props.fontFamily]}em`};
+`;
 
 interface TitleLetter {
 	letter: string;
@@ -13,18 +27,14 @@ interface TitleLetter {
 function MyPreviewComponent(props: any) {
 	return (
 		<>
-			<h2 className="section-title-preview">
+			<SectionTitlePreview>
 				{props.value &&
 					props.value.map((l: TitleLetter) => (
-						<span
-							className="preview-letter"
-							style={{ fontFamily: l.fontFamily, fontSize: `${fontSizeMultiplier[l.fontFamily]}em` }}
-							key={l._key}
-						>
+						<PreviewLetter fontFamily={l.fontFamily} key={l._key}>
 							{l.letter}
-						</span>
+						</PreviewLetter>
 					))}
-			</h2>
+			</SectionTitlePreview>
 			{props.renderDefault(props)}
 		</>
 	);

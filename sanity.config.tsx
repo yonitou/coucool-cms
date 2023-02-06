@@ -5,13 +5,14 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
+import StepVizualizer from "./schemas/components/StepVizualizer";
 
 const sharedConfig = definePlugin({
 	name: "sharedConfig",
 	document: {
 		newDocumentOptions: (prev, { creationContext }) => {
 			if (creationContext.type === "global") {
-				return prev.filter((templateItem) => templateItem.templateId != "siteSettings");
+				return prev.filter((templateItem) => templateItem.templateId !== "siteSettings");
 			}
 			return prev;
 		},
@@ -30,6 +31,17 @@ const sharedConfig = definePlugin({
 	plugins: [
 		colorInput(),
 		deskTool({
+			defaultDocumentNode: (S, context) => {
+				if (context.schemaType == "step") {
+					// Give all documents of type myDocument the JSON preview,
+					// as well as the default form view
+
+					return S.document().views([
+						S.view.form(),
+						S.view.component(() => StepVizualizer({ context })).title("Visualiseur d'étapes"),
+					]);
+				}
+			},
 			structure: (S, context) =>
 				S.list()
 					.title("Contenu")
@@ -45,10 +57,15 @@ const sharedConfig = definePlugin({
 							title: "Sections",
 							icon: () => <MasterDetailIcon onResize={undefined} onResizeCapture={undefined} />,
 						}),
+						...S.documentTypeListItems().filter(
+							(listItem) => !["siteSettings", "section"].includes(listItem.getId() as string)
+						),
 					]),
 		}),
+
 		visionTool(),
 	],
+
 	schema: {
 		types: schemaTypes,
 	},
