@@ -24,8 +24,6 @@ export default defineType({
 						const steps: stepType[] = await client.fetch(
 							'*[_type == "step"]{ end,start, _id, answers,"imageUrl": image.asset->url, slug}'
 						);
-						console.error(steps);
-						console.error(getPossiblePaths(steps));
 						const possiblePathsLength = getPossiblePaths(
 							steps?.map((s) => ({ ...s, _id: s._id.replace("drafts.", "") }))
 						)?.map((p) => p.length);

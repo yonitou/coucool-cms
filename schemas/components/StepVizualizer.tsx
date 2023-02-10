@@ -50,7 +50,6 @@ const StepVizualizer = ({ context }: { context: DefaultDocumentNodeContext }): J
 			const steps = await client.fetch(
 				'*[_type == "step"]{ end,start, _id, answers,"imageUrl": image.asset->url}'
 			);
-			console.log(steps);
 			setSteps(steps);
 		};
 		loadSteps();

@@ -14,16 +14,18 @@ export default defineType({
 			rows: 3,
 		}),
 		defineField({
-			name: "slug",
-			type: "slug",
-			title: "Identifiant de l'étape",
-			validation: (Rule) => Rule.required(),
-		}),
-		defineField({
 			title: "Texte de la bulle",
 			name: "text",
 			rows: 3,
 			type: "text",
+		}),
+		defineField({
+			title: "Dialogue",
+			name: "dialog",
+			description:
+				"En activant cette option, une petite forme sera ajoutée sur le côté de la bulle afin d'illustrer que le personnage parle",
+			type: "boolean",
+			initialValue: false,
 		}),
 		defineField({
 			title: "Image",
@@ -47,19 +49,29 @@ export default defineType({
 			name: "end",
 			title: "Étape finale",
 			type: "boolean",
+			readOnly: true,
 			initialValue: false,
 		}),
 		defineField({
 			name: "start",
 			title: "Première étape",
 			type: "boolean",
+			readOnly: true,
 			initialValue: false,
 		}),
 	],
 	preview: {
 		select: {
-			title: "slug.current",
+			title: "question",
 			media: "image.asset",
+			subtitle: "text",
+		},
+		prepare({ title, media, subtitle }) {
+			return {
+				title: title || "Sans question",
+				subtitle: subtitle || "Sans bulle",
+				media,
+			};
 		},
 	},
 });
