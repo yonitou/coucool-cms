@@ -16,6 +16,7 @@ const Image = styled.img<{ isCurrent: boolean }>`
 	width: 100%;
 	height: 100%;
 	grid-column: span 3;
+	object-fit: cover;
 	border: ${(props) => (props.isCurrent ? "2px solid green" : "2px solid transparent")};
 `;
 
@@ -66,11 +67,11 @@ const StepVizualizer = ({ context }: { context: DefaultDocumentNodeContext }): J
 								Chemin {i + 1} - {hasSuccessStep ? "✅" : "❌"}
 							</Title>
 							<Grid>
-								{path?.map((stepId) => {
+								{path?.map((stepId, i) => {
 									const step = steps.find((s) => s._id === stepId) as stepType;
 									return (
 										<Fragment key={step._id}>
-											<Linker />
+											{i !== 0 && <Linker />}
 											<Image src={step.imageUrl} isCurrent={step._id === currentStep._id} />
 										</Fragment>
 									);
