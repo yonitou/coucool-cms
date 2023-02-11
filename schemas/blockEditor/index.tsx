@@ -1,4 +1,10 @@
 import { ArrowRightIcon, EnvelopeIcon, LaunchIcon, LinkIcon } from "@sanity/icons";
+import styled from "styled-components";
+
+const Title = styled.h3`
+	font-weight: normal;
+	margin: 0;
+`;
 
 const ExternalLinkRender = ({ children, href }: { children: JSX.Element; href: string }) => (
 	<span>
@@ -17,6 +23,8 @@ const InternalLinkRender = ({ children }: { children: JSX.Element }) => (
 		<LinkIcon onResize={undefined} onResizeCapture={undefined} />
 	</span>
 );
+
+const H3 = ({ children }: { children: JSX.Element }) => <Title>{children}</Title>;
 
 export default {
 	marks: {
@@ -41,10 +49,7 @@ export default {
 		{
 			title: "H3",
 			value: "h3",
-		},
-		{
-			title: "H5",
-			value: "h5",
+			component: ({ children }: { children: JSX.Element }) => <Title>{children}</Title>,
 		},
 	],
 	lists: [
