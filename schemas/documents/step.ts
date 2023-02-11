@@ -14,6 +14,14 @@ export default defineType({
 			rows: 3,
 		}),
 		defineField({
+			name: "slug",
+			type: "slug",
+			title: "Nom de l'étape",
+			description:
+				"Ajoutez ici un nom d'étape. Celui-ci ne sera pas utilisé sur le site mais est uniquement pour faciliter la distinction entre les différentes étapes",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
 			title: "Texte de la bulle",
 			name: "text",
 			rows: 3,
@@ -50,6 +58,10 @@ export default defineType({
 			title: "Étape finale",
 			type: "boolean",
 			readOnly: true,
+			options: {
+				layout: "checkbox",
+			},
+
 			initialValue: false,
 		}),
 		defineField({
@@ -57,19 +69,22 @@ export default defineType({
 			title: "Première étape",
 			type: "boolean",
 			readOnly: true,
+			options: {
+				layout: "checkbox",
+			},
 			initialValue: false,
 		}),
 	],
 	preview: {
 		select: {
-			title: "question",
+			title: "slug.current",
 			media: "image.asset",
 			subtitle: "text",
 		},
 		prepare({ title, media, subtitle }) {
 			return {
-				title: title || "Sans question",
-				subtitle: subtitle || "Sans bulle",
+				title: title,
+				subtitle: subtitle || "-",
 				media,
 			};
 		},

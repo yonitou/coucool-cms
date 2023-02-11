@@ -15,7 +15,7 @@ const SectionTitlePreview = styled.h2`
 
 const PreviewLetter = styled.span<{ fontFamily: fontEnum }>`
 	text-transform: uppercase;
-	fontfamily: ${(props) => props.fontFamily};
+	font-family: ${(props) => props.fontFamily};
 	font-size: ${(props) => `${fontSizeMultiplier[props.fontFamily]}em`};
 `;
 
