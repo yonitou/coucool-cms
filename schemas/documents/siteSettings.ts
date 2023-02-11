@@ -8,34 +8,73 @@ export default defineType({
 			title: "SEO",
 		},
 	],
+	fieldsets: [
+		{
+			name: "social",
+			title: "Réseaux sociaux",
+			options: {
+				collapsible: true,
+				collapsed: false,
+			},
+		},
+	],
 	name: "siteSettings",
 	title: "Site Settings",
 	type: "document",
 	fields: [
 		defineField({
 			name: "title",
-			title: "Header",
+			title: "Titre principal",
 			type: "text",
 			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
+			name: "footer",
+			title: "Footer",
+			description: "Ce texte défilera en bas de page du site",
+			type: "string",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "eventLink",
+			fieldset: "social",
+			title: "Lien vers l'évènement",
+			type: "url",
+			validation: (Rule) => Rule.required().uri({}),
+		}),
+
+		defineField({
+			name: "facebook",
+			title: "Lien vers la page Facebook",
+			fieldset: "social",
+			type: "url",
+			validation: (Rule) => Rule.required().uri({}),
+		}),
+		defineField({
+			name: "instagram",
+			title: "Lien vers la page Instagram",
+			fieldset: "social",
+			type: "url",
+			validation: (Rule) => Rule.required().uri({}),
+		}),
+		defineField({
 			name: "seoTitle",
-			title: "Titre",
+			title: "Balise SEO - Title",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			group: "seo",
 		}),
 		defineField({
 			name: "seoDescription",
-			title: "Description",
+			title: "Balise SEO - Description",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			group: "seo",
 		}),
 		defineField({
 			name: "color",
-			title: "Couleur dominante",
+			title: "Balise SEO - Couleur dominante",
 			type: "color",
 			group: "seo",
 			validation: (Rule) => Rule.required(),
@@ -55,26 +94,6 @@ export default defineType({
 					maxHeight: 630,
 				},
 			}),
-		}),
-
-		defineField({
-			name: "eventLink",
-			title: "Lien vers l'évènement",
-			type: "url",
-			validation: (Rule) => Rule.required().uri({}),
-		}),
-
-		defineField({
-			name: "facebook",
-			title: "Lien vers la page Facebook",
-			type: "url",
-			validation: (Rule) => Rule.required().uri({}),
-		}),
-		defineField({
-			name: "instagram",
-			title: "Lien vers la page Instagram",
-			type: "url",
-			validation: (Rule) => Rule.required().uri({}),
 		}),
 	],
 });
