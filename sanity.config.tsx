@@ -73,16 +73,16 @@ const sharedConfig = definePlugin({
 
 // ts-prune-ignore-next
 export default defineConfig([
-	{
-		name: "production",
-		title: "Coucool - Public",
-		icon: () => <RocketIcon onResize={undefined} onResizeCapture={undefined} />,
-		projectId: "4durckeb",
-		dataset: "production",
-		basePath: "/production",
-		subtitle: "production",
-		plugins: [sharedConfig()],
-	},
+	// {
+	// 	name: "production",
+	// 	title: "Coucool - Public",
+	// 	icon: () => <RocketIcon onResize={undefined} onResizeCapture={undefined} />,
+	// 	projectId: "4durckeb",
+	// 	dataset: "production",
+	// 	basePath: "/production",
+	// 	subtitle: "production",
+	// 	plugins: [sharedConfig()],
+	// },
 	{
 		name: "staging",
 		title: "Coucool - Test",
