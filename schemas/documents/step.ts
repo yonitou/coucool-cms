@@ -29,12 +29,24 @@ export default defineType({
 		}),
 		defineField({
 			title: "Dialogue",
-			name: "dialog",
+			name: "queuePosition",
 			description:
-				"En activant cette option, une petite forme sera ajoutée sur le côté de la bulle afin d'illustrer que le personnage parle",
-			type: "boolean",
-			initialValue: false,
+				"Si la bulle contient un dialogue, choisissez la position de la queue/quille de la bulle. Ne choisissez rien si la bulle n'est pas un dialogue.",
+			type: "string",
+			options: {
+				list: [
+					{ title: "En haut à gauche", value: "topLeft" },
+					{ title: "En haut à droite", value: "topRight" },
+					{ title: "En bas à gauche", value: "bottomLeft" },
+					{ title: "En bas à droite", value: "bottomRight" },
+					{ title: "Sur la gauche vers le haut", value: "leftTop" },
+					{ title: "Sur la droite vers le haut", value: "rightTop" },
+					{ title: "Sur la gauche vers le bas", value: "leftBottom" },
+					{ title: "Sur la droite vers le bas", value: "rightBottom" },
+				],
+			},
 		}),
+
 		defineField({
 			title: "Image",
 			name: "image",
