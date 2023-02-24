@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { createImageField, fields } from "sanity-pills";
+import blockEditor from "../blockEditor";
 
 export default defineType({
 	groups: [
@@ -35,6 +36,18 @@ export default defineType({
 			description: "Ce texte défilera en bas de page du site",
 			type: "string",
 			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "ticketingInfos",
+			type: "array",
+			title: "Informations de billetterie",
+			validation: (Rule) => Rule.required(),
+			of: [
+				{
+					type: "block",
+					...blockEditor,
+				},
+			],
 		}),
 		defineField({
 			name: "eventLink",
