@@ -49,13 +49,6 @@ export default defineType({
 				},
 			],
 		}),
-		defineField({
-			name: "eventLink",
-			fieldset: "social",
-			title: "Lien vers l'évènement",
-			type: "url",
-			validation: (Rule) => Rule.required().uri({}),
-		}),
 
 		defineField({
 			name: "facebook",
