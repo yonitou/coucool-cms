@@ -33,8 +33,8 @@ export default defineType({
 		defineField({
 			name: "footer",
 			title: "Footer",
-			description: "Ce texte défilera en bas de page du site",
-			type: "string",
+			type: "text",
+			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
