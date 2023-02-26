@@ -7,11 +7,11 @@ export default defineCliConfig({
 		dataset: "staging",
 	},
 	graphql: [
-		// {
-		// 	id: "production",
-		// 	workspace: "production",
-		// 	source: "production",
-		// },
+		{
+			id: "production",
+			workspace: "production",
+			source: "production",
+		},
 		{
 			id: "staging",
 			workspace: "staging",
