@@ -9,22 +9,16 @@ const Title = styled.h3`
 const ExternalLinkRender = ({ children, href }: { children: JSX.Element; href: string }) => (
 	<span>
 		{children} &nbsp;
-		{href?.startsWith("mailto:") ? (
-			<EnvelopeIcon onResize={undefined} onResizeCapture={undefined} />
-		) : (
-			<LaunchIcon onResize={undefined} onResizeCapture={undefined} />
-		)}
+		{href?.startsWith("mailto:") ? <EnvelopeIcon /> : <LaunchIcon />}
 	</span>
 );
 
 const InternalLinkRender = ({ children }: { children: JSX.Element }) => (
 	<span>
 		{children} &nbsp;
-		<LinkIcon onResize={undefined} onResizeCapture={undefined} />
+		<LinkIcon />
 	</span>
 );
-
-const H3 = ({ children }: { children: JSX.Element }) => <Title>{children}</Title>;
 
 export default {
 	marks: {

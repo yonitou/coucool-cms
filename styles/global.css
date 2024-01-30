@@ -5,7 +5,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: Adversal;
-	src: url("./fonts/Adversal.woff") format("woff"), url("./fonts/Adversal.woff2") format("woff2");
+	src:
+		url("./fonts/Adversal.woff") format("woff"),
+		url("./fonts/Adversal.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -13,7 +15,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: AsfenRegular;
-	src: url("./fonts/Asfen-Regular.woff") format("woff"), url("./fonts/Asfen-Regular.woff2") format("woff2");
+	src:
+		url("./fonts/Asfen-Regular.woff") format("woff"),
+		url("./fonts/Asfen-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -21,7 +25,8 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: DTRandomDisplayRegular;
-	src: url("./fonts/DTRandomDisplay-Regular.woff") format("woff"),
+	src:
+		url("./fonts/DTRandomDisplay-Regular.woff") format("woff"),
 		url("./fonts/DTRandomDisplay-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
@@ -30,7 +35,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: PPMondwestRegular;
-	src: url("./fonts/PPMondwest-Regular.woff") format("woff"), url("./fonts/PPMondwest-Regular.woff2") format("woff2");
+	src:
+		url("./fonts/PPMondwest-Regular.woff") format("woff"),
+		url("./fonts/PPMondwest-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -38,7 +45,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: RemboyRegular;
-	src: url("./fonts/Remboy-Regular.woff") format("woff"), url("./fonts/Remboy-Regular.woff2") format("woff2");
+	src:
+		url("./fonts/Remboy-Regular.woff") format("woff"),
+		url("./fonts/Remboy-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -46,7 +55,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: SKFemmeFatale;
-	src: url("./fonts/SK-Femme-Fatale.woff") format("woff"), url("./fonts/SK-Femme-Fatale.woff2") format("woff2");
+	src:
+		url("./fonts/SK-Femme-Fatale.woff") format("woff"),
+		url("./fonts/SK-Femme-Fatale.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -54,7 +65,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: SolideMirageEtroit;
-	src: url("./fonts/SolideMirage-Etroit.woff") format("woff"), url("./fonts/Adversal.woff2") format("woff2");
+	src:
+		url("./fonts/SolideMirage-Etroit.woff") format("woff"),
+		url("./fonts/Adversal.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -62,7 +75,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: WonkyRegular;
-	src: url("./fonts/Wonky-Regular.woff") format("woff"), url("./fonts/Wonky-Regular.woff2") format("woff2");
+	src:
+		url("./fonts/Wonky-Regular.woff") format("woff"),
+		url("./fonts/Wonky-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -70,7 +85,9 @@ div[data-list-item="arrow"] > div::before {
 
 @font-face {
 	font-family: WriggleRegular;
-	src: url("./fonts/Wriggle-Regular.woff") format("woff"), url("./fonts/Wriggle-Regular.woff2") format("woff2");
+	src:
+		url("./fonts/Wriggle-Regular.woff") format("woff"),
+		url("./fonts/Wriggle-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;

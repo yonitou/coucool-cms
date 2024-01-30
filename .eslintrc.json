@@ -21,6 +21,13 @@
 	},
 	"plugins": ["react", "@typescript-eslint", "react-hooks", "eslint-plugin-no-inline-styles"],
 	"rules": {
+		"react/function-component-definition": [
+			2,
+			{
+				"namedComponents": "arrow-function",
+				"unnamedComponents": "arrow-function"
+			}
+		],
 		"no-use-before-define": "off",
 		"no-shadow": "off",
 		"no-underscore-dangle": ["error", { "allow": ["_rawContent"] }],

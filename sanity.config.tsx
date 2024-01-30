@@ -1,11 +1,10 @@
 import { defineConfig, definePlugin } from "sanity";
-import { deskTool } from "sanity/desk";
+import { ListItem, structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
-import { visionTool } from "@sanity/vision";
+import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
 import { schemaTypes } from "./schemas";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
-import StepVizualizer from "./schemas/components/StepVizualizer";
+import { CogIcon, MasterDetailIcon, PinIcon, RocketIcon, UserIcon } from "@sanity/icons";
 
 const sharedConfig = definePlugin({
 	name: "sharedConfig",
@@ -22,24 +21,22 @@ const sharedConfig = definePlugin({
 				? [
 						...actionsWithoutUnpublish.filter(
 							(originalAction) =>
-								originalAction.action !== "delete" && originalAction.action !== "duplicate"
+								originalAction.action !== "delete" && originalAction.action !== "duplicate",
 						),
-				  ]
+					]
 				: actionsWithoutUnpublish;
 		},
 	},
 	plugins: [
+		imageHotspotArrayPlugin(),
 		colorInput(),
-		deskTool({
+		structureTool({
 			defaultDocumentNode: (S, context) => {
 				if (context.schemaType == "step") {
 					// Give all documents of type myDocument the JSON preview,
 					// as well as the default form view
 
-					return S.document().views([
-						S.view.form(),
-						S.view.component(() => StepVizualizer({ context })).title("Visualiseur d'étapes"),
-					]);
+					return S.document().views([S.view.form()]);
 				}
 			},
 			structure: (S, context) =>
@@ -52,18 +49,17 @@ const sharedConfig = definePlugin({
 							.icon(CogIcon),
 						orderableDocumentListDeskItem({
 							type: "section",
+							// @ts-ignore
 							S,
 							context,
 							title: "Sections",
-							icon: () => <MasterDetailIcon onResize={undefined} onResizeCapture={undefined} />,
-						}),
+							icon: MasterDetailIcon,
+						}) as ListItem,
 						...S.documentTypeListItems().filter(
-							(listItem) => !["siteSettings", "section"].includes(listItem.getId() as string)
+							(listItem) => !["siteSettings", "section"].includes(listItem.getId() as string),
 						),
 					]),
 		}),
-
-		visionTool(),
 	],
 
 	schema: {

@@ -1,5 +1,5 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
-import { defineType, defineField, SortOrdering } from "sanity";
+import { defineType, defineField, SortOrdering, defineArrayMember } from "sanity";
 import blockEditor from "../blockEditor";
 import { fontEnum } from "../types/fontEnum";
 import "../../styles/global.css";
@@ -54,8 +54,9 @@ export default defineType({
 			components: {
 				input: MyPreviewComponent,
 			},
+			// @ts-ignore
 			of: [
-				defineField({
+				defineArrayMember({
 					name: "content",
 					title: "Contenu",
 					type: "content",
@@ -86,6 +87,7 @@ export default defineType({
 			name: "content",
 			type: "array",
 			title: "Contenu",
+			// @ts-ignore
 			of: [
 				{
 					type: "block",

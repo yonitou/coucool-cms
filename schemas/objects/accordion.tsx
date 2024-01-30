@@ -7,7 +7,7 @@ export default defineType({
 	name: "accordion",
 	title: "Accordéon",
 	type: "object",
-	icon: () => <StackIcon onResize={undefined} onResizeCapture={undefined} />,
+	icon: () => <StackIcon />,
 	fields: [
 		defineField({
 			name: "title",

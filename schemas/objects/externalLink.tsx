@@ -5,7 +5,7 @@ export default defineType({
 	name: "externalLink",
 	type: "object",
 	title: "Lien externe",
-	icon: () => <LaunchIcon onResize={undefined} onResizeCapture={undefined} />,
+	icon: () => <LaunchIcon />,
 	fields: [
 		defineField({
 			name: "href",

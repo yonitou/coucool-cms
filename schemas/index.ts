@@ -5,17 +5,21 @@ import internalLink from "./objects/internalLink";
 import section from "./documents/section";
 import siteSettings from "./documents/siteSettings";
 import content from "./objects/content";
-import answer from "./objects/answer";
-import step from "./documents/step";
+import story from "./objects/story";
+import spot from "./objects/spot";
+import experience from "./documents/experience";
+import character from "./documents/character";
 
 export const schemaTypes = [
 	internalLink,
-	answer,
 	externalLink,
 	edition,
 	content,
+	spot,
+	story,
+	experience,
+	character,
 	section,
 	accordion,
 	siteSettings,
-	step,
 ];

@@ -4,7 +4,7 @@ import { defineField, defineType } from "sanity";
 export default defineType({
 	name: "edition",
 	type: "object",
-	icon: () => <StarIcon onResize={undefined} onResizeCapture={undefined} />,
+	icon: () => <StarIcon />,
 	title: "Ancienne Édition",
 	fields: [
 		defineField({
@@ -12,9 +12,11 @@ export default defineType({
 			type: "date",
 			title: "Année",
 			options: {
-				dateFormat: "YYYY",
+				dateFormat: "yyyy",
 			},
-			validation: (Rule) => Rule.required().min("2016-01-01T00:00:00.000Z").max(new Date().toISOString()),
+			validation: (Rule) => {
+				return Rule.required().min(new Date("2016-01-01T00:00:00.000Z").getTime()).max(new Date().getTime());
+			},
 		}),
 	],
 	preview: {
