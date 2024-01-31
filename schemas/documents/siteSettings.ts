@@ -27,7 +27,6 @@ export default defineType({
 			name: "title",
 			title: "Titre principal",
 			type: "text",
-			// @ts-ignore
 			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),
@@ -35,7 +34,6 @@ export default defineType({
 			name: "footer",
 			title: "Footer",
 			type: "text",
-			// @ts-ignore
 			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),
@@ -44,7 +42,6 @@ export default defineType({
 			type: "array",
 			title: "Informations de billetterie",
 			validation: (Rule) => Rule.required(),
-			// @ts-ignore
 			of: [
 				{
 					type: "block",
@@ -90,7 +87,7 @@ export default defineType({
 		}),
 		...fields({
 			ogImage: createImageField({
-				// @ts-ignore
+				// @ts-expect-error Issue with sanity
 				title: "Image de partage (1200px x 630px)",
 				group: "seo",
 				options: {

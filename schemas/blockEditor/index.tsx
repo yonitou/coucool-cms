@@ -6,14 +6,14 @@ const Title = styled.h3`
 	margin: 0;
 `;
 
-const ExternalLinkRender = ({ children, href }: { children: JSX.Element; href: string }) => (
+const ExternalLinkRender = ({ children, href }: { children: JSX.Element; href: string }): JSX.Element => (
 	<span>
 		{children} &nbsp;
 		{href?.startsWith("mailto:") ? <EnvelopeIcon /> : <LaunchIcon />}
 	</span>
 );
 
-const InternalLinkRender = ({ children }: { children: JSX.Element }) => (
+const InternalLinkRender = ({ children }: { children: JSX.Element }): JSX.Element => (
 	<span>
 		{children} &nbsp;
 		<LinkIcon />

@@ -3,6 +3,22 @@ div[data-list-item="arrow"] > div::before {
 	margin-left: 1rem;
 }
 
+div[draggable] {
+	left: 0.7rem !important;
+	width: 2rem !important;
+	height: 2rem !important;
+	border-radius: unset !important;
+	background: hsla(333.6585365853658, 51.898734177215225%, 84.50980392156863%, 0.6) !important;
+	top: 0.7rem !important;
+	border: 1px solid black !important;
+}
+
+div[draggable] * {
+	color: black !important;
+	visibility: visible !important;
+	background: transparent !important;
+}
+
 @font-face {
 	font-family: Adversal;
 	src:

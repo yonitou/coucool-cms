@@ -2,9 +2,9 @@ import { defineConfig, definePlugin } from "sanity";
 import { ListItem, structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
 import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
-import { schemaTypes } from "./schemas";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { CogIcon, MasterDetailIcon, PinIcon, RocketIcon, UserIcon } from "@sanity/icons";
+import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
+import { schemaTypes } from "./schemas";
 
 const sharedConfig = definePlugin({
 	name: "sharedConfig",
@@ -32,12 +32,13 @@ const sharedConfig = definePlugin({
 		colorInput(),
 		structureTool({
 			defaultDocumentNode: (S, context) => {
-				if (context.schemaType == "step") {
+				if (context.schemaType === "step") {
 					// Give all documents of type myDocument the JSON preview,
 					// as well as the default form view
 
 					return S.document().views([S.view.form()]);
 				}
+				return null;
 			},
 			structure: (S, context) =>
 				S.list()
@@ -49,7 +50,7 @@ const sharedConfig = definePlugin({
 							.icon(CogIcon),
 						orderableDocumentListDeskItem({
 							type: "section",
-							// @ts-ignore
+							// @ts-expect-error Issue with sanity
 							S,
 							context,
 							title: "Sections",
@@ -72,7 +73,7 @@ export default defineConfig([
 	{
 		name: "production",
 		title: "Coucool - Public",
-		icon: () => <RocketIcon onResize={undefined} onResizeCapture={undefined} />,
+		icon: () => <RocketIcon />,
 		projectId: "4durckeb",
 		dataset: "production",
 		basePath: "/production",
@@ -82,7 +83,7 @@ export default defineConfig([
 	{
 		name: "staging",
 		title: "Coucool - Test",
-		icon: () => <UserIcon onResize={undefined} onResizeCapture={undefined} />,
+		icon: () => <UserIcon />,
 		projectId: "4durckeb",
 		dataset: "staging",
 		basePath: "/staging",

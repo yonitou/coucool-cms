@@ -9,7 +9,6 @@ export default defineType({
 			name: "label",
 			type: "text",
 			title: "Texte",
-			// @ts-ignore
 			rows: 3,
 			validation: (Rule) => Rule.required(),
 		}),

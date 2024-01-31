@@ -15,7 +15,7 @@ export default defineType({
 				dateFormat: "yyyy",
 			},
 			validation: (Rule) => {
-				return Rule.required().min(new Date("2016-01-01T00:00:00.000Z").getTime()).max(new Date().getTime());
+				return Rule.required().min("2016-01-01T00:00:00.000Z").max(new Date().toISOString());
 			},
 		}),
 	],

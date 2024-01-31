@@ -15,7 +15,6 @@ export default defineType({
 			name: "content",
 			type: "array",
 			title: "Contenu",
-			// @ts-ignore
 			of: [{ type: "story" }],
 		}),
 		defineField({

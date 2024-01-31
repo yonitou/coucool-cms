@@ -21,7 +21,6 @@ export default defineField({
 			type: "reference",
 			title: "Personnage",
 			validation: (Rule) => Rule.required(),
-			// @ts-ignore
 			to: [
 				{
 					type: "character",
@@ -36,10 +35,9 @@ export default defineField({
 			y: "y",
 		},
 		prepare({ title, x, y }) {
-			console.log(title);
 			return {
-				title: title.current,
-				subtitle: `${x}% / ${y}%`,
+				title: title?.current,
+				subtitle: x && y ? `${x}% / ${y}%` : "",
 			};
 		},
 	},
