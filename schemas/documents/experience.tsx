@@ -4,6 +4,7 @@ import createImageUrlBuilder from "@sanity/image-url";
 import { ImageValue, ObjectInputProps, ObjectSchemaType, defineField, defineType, useClient } from "sanity";
 import { HotspotTooltipProps } from "sanity-plugin-hotspot-array";
 import styled from "styled-components";
+import { ImageIcon } from "@sanity/icons";
 
 const HotspotPreview = ({ value, renderPreview, schemaType }: HotspotTooltipProps): JSX.Element => {
 	return (
@@ -50,6 +51,7 @@ const PreviewImage = (props: ObjectInputProps<ImageValue, ObjectSchemaType>): JS
 export default defineType({
 	name: "experience",
 	title: "Expérience",
+	icon: () => <ImageIcon />,
 	__experimental_formPreviewTitle: false,
 	type: "document",
 	fields: [

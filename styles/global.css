@@ -3,7 +3,7 @@ div[data-list-item="arrow"] > div::before {
 	margin-left: 1rem;
 }
 
-div[draggable] {
+fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div > div[draggable] {
 	left: 0.7rem !important;
 	width: 2rem !important;
 	height: 2rem !important;
@@ -13,7 +13,7 @@ div[draggable] {
 	border: 1px solid black !important;
 }
 
-div[draggable] * {
+fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div > div[draggable] * {
 	color: black !important;
 	visibility: visible !important;
 	background: transparent !important;

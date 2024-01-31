@@ -1,9 +1,11 @@
+import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "character",
 	type: "document",
 	title: "Personnage",
+	icon: UserIcon,
 	fields: [
 		defineField({
 			title: "Nom",
@@ -27,11 +29,12 @@ export default defineType({
 	preview: {
 		select: {
 			title: "slug",
+			content: "content",
 		},
-		prepare({ title }) {
+		prepare({ title, content }) {
 			return {
 				title: title?.current,
-				subtitle: title?.current,
+				subtitle: `${content?.length} parties`,
 			};
 		},
 	},

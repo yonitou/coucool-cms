@@ -3,7 +3,8 @@ import { ListItem, structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
 import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { CogIcon, MasterDetailIcon, RocketIcon, UserIcon } from "@sanity/icons";
+import { CogIcon, ColorWheelIcon, MasterDetailIcon, RocketIcon } from "@sanity/icons";
+import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemas";
 
 const sharedConfig = definePlugin({
@@ -30,6 +31,7 @@ const sharedConfig = definePlugin({
 	plugins: [
 		imageHotspotArrayPlugin(),
 		colorInput(),
+		visionTool(),
 		structureTool({
 			defaultDocumentNode: (S, context) => {
 				if (context.schemaType === "step") {
@@ -83,7 +85,7 @@ export default defineConfig([
 	{
 		name: "staging",
 		title: "Coucool - Test",
-		icon: () => <UserIcon />,
+		icon: () => <ColorWheelIcon />,
 		projectId: "4durckeb",
 		dataset: "staging",
 		basePath: "/staging",
