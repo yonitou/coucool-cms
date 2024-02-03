@@ -93,14 +93,31 @@ export default defineType({
 	preview: {
 		select: {
 			firstCharacter: "hotspots.0.character.slug.current",
+			firstCharacterInFlow: "hotspots.0.character.inFlow",
 			secondCharacter: "hotspots.1.character.slug.current",
+			secondCharacterInFlow: "hotspots.1.character.inFlow",
 			thirdCharacter: "hotspots.2.character.slug.current",
+			thirdCharacterInFlow: "hotspots.2.character.inFlow",
 			fourthCharacter: "hotspots.3.character.slug.current",
+			fourthCharacterInFlow: "hotspots.3.character.inFlow",
 		},
-		prepare({ firstCharacter, secondCharacter, thirdCharacter, fourthCharacter }) {
-			const authors = [firstCharacter, secondCharacter, thirdCharacter].filter(Boolean);
+		prepare({
+			firstCharacter,
+			secondCharacter,
+			thirdCharacter,
+			fourthCharacter,
+			firstCharacterInFlow,
+			secondCharacterInFlow,
+			thirdCharacterInFlow,
+			fourthCharacterInFlow,
+		}) {
+			const authors = [
+				firstCharacterInFlow && firstCharacter,
+				secondCharacterInFlow && secondCharacter,
+				thirdCharacterInFlow && thirdCharacter,
+			].filter(Boolean);
 			const title = authors.length > 0 ? authors.join(" -> ") : "";
-			const hasMoreCharacters = Boolean(fourthCharacter);
+			const hasMoreCharacters = Boolean(fourthCharacterInFlow && fourthCharacter);
 			return {
 				title: hasMoreCharacters ? `${title}…` : title,
 			};

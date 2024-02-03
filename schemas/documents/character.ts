@@ -14,16 +14,34 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
+			title: "Personnage gagnant",
+			name: "inFlow",
+			type: "boolean",
+			initialValue: true,
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
 			name: "content",
 			type: "array",
 			title: "Contenu",
 			of: [{ type: "story" }],
+			validation: (Rule) =>
+				Rule.custom((value, context) => {
+					const inFlow = context.document && context.document.inFlow;
+					if (inFlow)
+						return (value as unknown[]).length > 0 || "Au moins un contenu audio par personnage gagnant";
+					return (value as unknown[]).length === 1 || "Un seul contenu audio par personnage non gagnant";
+				}),
 		}),
 		defineField({
-			title: "Label bouton",
+			title: "Texte du bouton",
 			name: "ctaLabel",
 			type: "string",
-			validation: (Rule) => Rule.required(),
+			validation: (Rule) =>
+				Rule.custom((value, context) => {
+					const inFlow = context.document && context.document.inFlow;
+					return Boolean(!inFlow && !value) || Boolean(inFlow && !!value) || "Bouton obligatoire";
+				}),
 		}),
 	],
 	preview: {
