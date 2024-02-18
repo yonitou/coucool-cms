@@ -15,8 +15,8 @@ import {
 import { HotspotTooltipProps } from "sanity-plugin-hotspot-array";
 import styled from "styled-components";
 import { ImageIcon } from "@sanity/icons";
-import { fontSizeMultiplier } from "../../utils/fontSizeMultiplier";
-import { fontEnum } from "../types/fontEnum";
+import TitlePreview from "../components/TitlePreview";
+import { TitleLetter } from "../types/titleLetter.interface";
 
 const HotspotPreview = ({ value, renderPreview, schemaType }: HotspotTooltipProps): JSX.Element => {
 	return (
@@ -29,19 +29,6 @@ const HotspotPreview = ({ value, renderPreview, schemaType }: HotspotTooltipProp
 		</>
 	);
 };
-
-const SectionTitlePreview = styled.h2`
-	font-size: 4rem;
-	margin: 0;
-	font-weight: unset;
-	text-align: center;
-`;
-
-const PreviewLetter = styled.span<{ fontFamily: fontEnum }>`
-	text-transform: uppercase;
-	font-family: ${(props) => props.fontFamily};
-	font-size: ${(props) => `${fontSizeMultiplier[props.fontFamily]}em`};
-`;
 
 const Layer = styled.div<{ $url: string }>`
 	width: 100%;
@@ -73,12 +60,6 @@ const PreviewImage = (props: ObjectInputProps<ImageValue, ObjectSchemaType>): JS
 	);
 };
 
-interface TitleLetter {
-	letter: string;
-	fontFamily: fontEnum;
-	_key: string;
-}
-
 export default defineType({
 	name: "experience",
 	title: "Expérience",
@@ -104,18 +85,7 @@ export default defineType({
 					const { value, renderDefault } = props;
 					return (
 						<>
-							<SectionTitlePreview>
-								{value &&
-									value.map((l) => {
-										const letter = l as unknown as TitleLetter;
-										return (
-											// eslint-disable-next-line no-underscore-dangle
-											<PreviewLetter fontFamily={letter.fontFamily} key={letter._key}>
-												{letter.letter}
-											</PreviewLetter>
-										);
-									})}
-							</SectionTitlePreview>
+							<TitlePreview value={value as unknown as TitleLetter[]} />
 							{renderDefault(props)}
 						</>
 					);

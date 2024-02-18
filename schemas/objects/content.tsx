@@ -1,7 +1,6 @@
 import { defineField, defineType } from "sanity";
 import "../../styles/global.css";
-import { fontSizeMultiplier } from "../../utils/fontSizeMultiplier";
-import { fontEnum } from "../types/fontEnum";
+import { fontWeightEnum } from "../types/fontWeightEnum";
 
 export default defineType({
 	name: "content",
@@ -10,7 +9,7 @@ export default defineType({
 	preview: {
 		select: {
 			title: "letter",
-			subtitle: "fontFamily",
+			subtitle: "fontWeight",
 		},
 		prepare({ title, subtitle }) {
 			return {
@@ -20,8 +19,7 @@ export default defineType({
 					<span
 						className="preview-letter"
 						style={{
-							fontFamily: subtitle,
-							fontSize: `${fontSizeMultiplier[subtitle as fontEnum]}em`,
+							fontWeight: `${subtitle as fontWeightEnum}`,
 						}}
 					>
 						{title}
@@ -38,12 +36,12 @@ export default defineType({
 			validation: (Rule) => Rule.required().min(1).max(1),
 		}),
 		defineField({
-			title: "Police",
-			name: "fontFamily",
+			title: "Style",
+			name: "fontWeight",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			options: {
-				list: Object.values(fontEnum).map((font) => {
+				list: Object.values(fontWeightEnum).map((font) => {
 					return { title: font, value: font };
 				}),
 			},

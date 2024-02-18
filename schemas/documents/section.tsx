@@ -1,5 +1,4 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
-import styled from "styled-components";
 import {
 	defineType,
 	defineField,
@@ -9,28 +8,11 @@ import {
 	ArraySchemaType,
 } from "sanity";
 import blockEditor from "../blockEditor";
-import { fontEnum } from "../types/fontEnum";
 import "../../styles/global.css";
-import { fontSizeMultiplier } from "../../utils/fontSizeMultiplier";
+import { fontWeightEnum } from "../types/fontWeightEnum";
+import TitlePreview from "../components/TitlePreview";
+import { TitleLetter } from "../types/titleLetter.interface";
 
-const SectionTitlePreview = styled.h2`
-	font-size: 4rem;
-	margin: 0;
-	font-weight: unset;
-	text-align: center;
-`;
-
-const PreviewLetter = styled.span<{ fontFamily: fontEnum }>`
-	text-transform: uppercase;
-	font-family: ${(props) => props.fontFamily};
-	font-size: ${(props) => `${fontSizeMultiplier[props.fontFamily]}em`};
-`;
-
-interface TitleLetter {
-	letter: string;
-	fontFamily: fontEnum;
-	_key: string;
-}
 export default defineType({
 	name: "section",
 	type: "document",
@@ -47,18 +29,7 @@ export default defineType({
 					const { value, renderDefault } = props;
 					return (
 						<>
-							<SectionTitlePreview>
-								{value &&
-									value.map((l) => {
-										const letter = l as unknown as TitleLetter;
-										return (
-											// eslint-disable-next-line no-underscore-dangle
-											<PreviewLetter fontFamily={letter.fontFamily} key={letter._key}>
-												{letter.letter}
-											</PreviewLetter>
-										);
-									})}
-							</SectionTitlePreview>
+							<TitlePreview value={value as unknown as TitleLetter[]} />
 							{renderDefault(props)}
 						</>
 					);
@@ -121,14 +92,13 @@ export default defineType({
 		},
 		prepare({ title }) {
 			return {
-				title: title?.map((l: TitleLetter) => l.letter).join(""),
+				title: title?.map((l: TitleLetter) => l.letter.toUpperCase()).join(""),
 
 				media: (
 					<span
 						className="preview-letter"
 						style={{
-							fontFamily: title[0].fontFamily,
-							fontSize: `${fontSizeMultiplier[title?.[0].fontFamily as fontEnum]}em`,
+							fontWeight: `${title?.[0].fontWeight as fontWeightEnum}`,
 						}}
 					>
 						{title[0].letter}
