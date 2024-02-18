@@ -1,6 +1,8 @@
 export enum fontWeightEnum {
-	normal = "normal",
-	light = "light",
-	bold = "bold",
-	medium = "medium",
+	normal = "400",
+	light = "300",
+	bold = "700",
+	medium = "500",
 }
+
+export const fontWeightList = Object.entries(fontWeightEnum).map(([title, value]) => ({ title, value }));

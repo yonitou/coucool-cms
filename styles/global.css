@@ -28,7 +28,7 @@ fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div
 	src:
 		url("./fonts/FarceRegular.woff") format("woff"),
 		url("./fonts/FarceRegular.woff2") format("woff2");
-	font-weight: normal;
+	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
@@ -38,7 +38,7 @@ fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div
 	src:
 		url("./fonts/FarceBold.woff") format("woff"),
 		url("./fonts/FarceBold.woff2") format("woff2");
-	font-weight: bold;
+	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
@@ -48,7 +48,7 @@ fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div
 	src:
 		url("./fonts/FarceLight.woff") format("woff"),
 		url("./fonts/FarceLight.woff2") format("woff2");
-	font-weight: light;
+	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
@@ -58,7 +58,7 @@ fieldset > div[data-ui="Box"] > div[data-ui="Grid"] > div[data-ui="Stack"] > div
 	src:
 		url("./fonts/FarceMedium.woff") format("woff"),
 		url("./fonts/FarceMedium.woff2") format("woff2");
-	font-weight: medium;
+	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }

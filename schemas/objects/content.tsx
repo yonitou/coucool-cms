@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 import "../../styles/global.css";
-import { fontWeightEnum } from "../types/fontWeightEnum";
+import { fontWeightEnum, fontWeightList } from "../types/fontWeightEnum";
 
 export default defineType({
 	name: "content",
@@ -14,7 +14,7 @@ export default defineType({
 		prepare({ title, subtitle }) {
 			return {
 				title,
-				subtitle,
+				subtitle: fontWeightList.find((f) => f.value === subtitle)?.title || subtitle,
 				media: (
 					<span
 						className="preview-letter"
@@ -41,9 +41,7 @@ export default defineType({
 			type: "string",
 			validation: (Rule) => Rule.required(),
 			options: {
-				list: Object.values(fontWeightEnum).map((font) => {
-					return { title: font, value: font };
-				}),
+				list: fontWeightList,
 			},
 		}),
 	],
