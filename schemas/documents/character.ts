@@ -10,11 +10,14 @@ export default defineType({
 		defineField({
 			title: "Nom",
 			name: "slug",
+			description: "Le nom du personnage doit être unique",
 			type: "slug",
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			title: "Personnage gagnant",
+			description:
+				"Cette option permet de définir si le personnage est inclus dans un parcours gagnant ou s'il va juste jouer du son",
 			name: "inFlow",
 			type: "boolean",
 			initialValue: true,
@@ -23,6 +26,8 @@ export default defineType({
 		defineField({
 			name: "content",
 			type: "array",
+			description:
+				"Le contenu joué/affiché par le personnage lorsqu'il sera sélectionné. Chaque partie du contenu sera affichée indépendamment dans une slide",
 			title: "Contenu",
 			of: [{ type: "story" }],
 			validation: (Rule) =>
@@ -35,6 +40,7 @@ export default defineType({
 		}),
 		defineField({
 			title: "Texte du bouton",
+			description: "Le texte affiché sur le bouton de la popin de contenu lorsque le personnage aura été cliqué",
 			name: "ctaLabel",
 			type: "string",
 			validation: (Rule) =>

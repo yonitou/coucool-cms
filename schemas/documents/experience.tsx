@@ -79,6 +79,7 @@ export default defineType({
 		defineField({
 			name: "title",
 			type: "array",
+			description: "Ce texte sera affiché en titre de la popin d'introduction à l'ouverture de l'expérience",
 			title: "Titre (Fenêtre introductive)",
 			components: {
 				input: (props: ArrayOfPrimitivesInputProps<string | number | boolean, ArraySchemaType<unknown>>) => {
@@ -102,6 +103,8 @@ export default defineType({
 		}),
 		defineField({
 			title: "Description (Fenêtre Introductive)",
+			description:
+				"Ce texte sera affiché en description de la popin d'introduction à l'ouverture de l'expérience",
 			name: "description",
 			type: "string",
 			validation: (Rule) => Rule.required(),
@@ -109,7 +112,8 @@ export default defineType({
 		defineField({
 			name: "sound",
 			type: "file",
-			title: "Fichier audio",
+			title: "Audio d'ambiance",
+			description: "Cet audio sera joué en fond de l'expérience",
 			options: {
 				accept: "audio/*",
 			},
@@ -118,6 +122,8 @@ export default defineType({
 		defineField({
 			type: "image",
 			name: "layerImage",
+			description:
+				"Cette image sera fusionnée avec l'image de la fresque afin de donner un effet de décoloration",
 			title: "Image de fusion",
 			options: {
 				hotspot: false,
@@ -130,6 +136,7 @@ export default defineType({
 		}),
 		defineField({
 			name: `hotspots`,
+			description: "Les zones cliquables de l'expérience",
 			type: `array`,
 			of: [{ type: "spot" }],
 
