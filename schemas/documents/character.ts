@@ -1,5 +1,6 @@
 import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { getImageDimensions } from "@sanity/asset-utils";
 
 export default defineType({
 	name: "character",
@@ -36,6 +37,32 @@ export default defineType({
 					if (inFlow)
 						return (value as unknown[]).length > 0 || "Au moins un contenu audio par personnage gagnant";
 					return (value as unknown[]).length === 1 || "Un seul contenu audio par personnage non gagnant";
+				}),
+		}),
+		defineField({
+			type: "image",
+			name: "image",
+			description:
+				"Cette image représente un PNG contenant le personnage détouré. Ce PNG doit faire la taille de la fresque",
+			title: "Image du personnage détouré",
+			options: {
+				hotspot: false,
+			},
+
+			validation: (Rule) =>
+				Rule.custom((value, context) => {
+					const isValidImage =
+						!!value?.asset &&
+						// eslint-disable-next-line no-underscore-dangle
+						getImageDimensions(value.asset._ref)?.width === 3200 &&
+						// eslint-disable-next-line no-underscore-dangle
+						getImageDimensions(value.asset._ref)?.height === 2240;
+					const inFlow = context.document && context.document.inFlow;
+					if (inFlow)
+						return (
+							(!!value && isValidImage) || "Un PNG de 3200x2240 par personnage gagnant est obligatoire"
+						);
+					return !value || "Pas de PNG possible pour les faux personnages";
 				}),
 		}),
 		defineField({
