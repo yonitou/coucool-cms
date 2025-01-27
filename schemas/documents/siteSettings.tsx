@@ -138,12 +138,24 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 			group: "seo",
 		}),
-		defineField({
-			name: "color",
-			title: "Balise SEO - Couleur dominante",
-			type: "color",
-			group: "seo",
-			validation: (Rule) => Rule.required(),
+		...fields({
+			gradient: createImageField({
+				// @ts-expect-error Issue with sanity
+				title: "Gradient de couleur",
+				description:
+					"Cette image sera utilisée pour créer la boucle de couleur. La première couleur sera utilisée dans les metadata SEO",
+				group: "seo",
+				options: {
+					hotspot: false,
+				},
+				validations: {
+					required: true,
+					minWidth: 256,
+					minHeight: 1,
+					maxWidth: 256,
+					maxHeight: 1,
+				},
+			}),
 		}),
 		...fields({
 			ogImage: createImageField({
