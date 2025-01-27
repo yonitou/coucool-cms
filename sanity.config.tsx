@@ -3,7 +3,7 @@ import { ListItem, structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { CogIcon, ColorWheelIcon, MasterDetailIcon, RocketIcon } from "@sanity/icons";
-import { visionTool } from "@sanity/vision";
+
 import { schemaTypes } from "./schemas";
 
 const sharedConfig = definePlugin({
