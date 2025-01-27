@@ -55,6 +55,16 @@ export default defineType({
 			validation: (rule) => rule.required().assetRequired(),
 		}),
 		defineField({
+			name: "sound",
+			type: "file",
+			title: "Audio d'ambiance",
+			description: "Cet audio sera joué en fond de l'expérience",
+			options: {
+				accept: "audio/*",
+			},
+			validation: (Rule) => Rule.required().assetRequired(),
+		}),
+		defineField({
 			name: `acts`,
 			description: "Les actes de l'expérience",
 			type: `array`,

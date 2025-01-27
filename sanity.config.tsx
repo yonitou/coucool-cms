@@ -29,7 +29,6 @@ const sharedConfig = definePlugin({
 	},
 	plugins: [
 		colorInput(),
-		visionTool(),
 		structureTool({
 			defaultDocumentNode: (S, context) => {
 				if (context.schemaType === "step") {
