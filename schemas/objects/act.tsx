@@ -53,21 +53,28 @@ export default defineField({
 		{
 			name: "video",
 			type: "file",
-			title: "Vidéo de l'acte",
+			title: "Vidéo de l'acte utilisée sur desktop",
 			options: {
 				accept: "video/*",
 			},
-			fields: [
-				{
-					name: "subtitle",
-					type: "file",
-					title: "Sous titres",
-					options: {
-						accept: "text/vtt",
-					},
-					validation: (Rule) => Rule.required().assetRequired(),
-				},
-			],
+			validation: (Rule) => Rule.required().assetRequired(),
+		},
+		{
+			name: "mobileVideo",
+			type: "file",
+			title: "Vidéo de l'acte utilisée sur mobile",
+			options: {
+				accept: "video/*",
+			},
+			validation: (Rule) => Rule.required().assetRequired(),
+		},
+		{
+			name: "subtitle",
+			type: "file",
+			title: "Sous titres des vidéos",
+			options: {
+				accept: "text/vtt",
+			},
 			validation: (Rule) => Rule.required().assetRequired(),
 		},
 	],
