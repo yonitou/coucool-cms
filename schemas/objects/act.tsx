@@ -44,12 +44,6 @@ export default defineField({
 			description: "0 équivaut à la première vidéo, 1 à la seconde, 2 à la 3ème",
 			validation: (Rule) => Rule.required().integer().min(0).max(2),
 		},
-		defineField({
-			name: "color",
-			title: "Couleur du texte de l'acte",
-			type: "color",
-			validation: (Rule) => Rule.required(),
-		}),
 		{
 			name: "video",
 			type: "file",

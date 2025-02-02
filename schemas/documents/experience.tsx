@@ -1,8 +1,6 @@
-import { ArrayOfPrimitivesInputProps, ArraySchemaType, defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 import { ImageIcon } from "@sanity/icons";
-import TitlePreview from "../components/TitlePreview";
-import { TitleLetter } from "../types/titleLetter.interface";
 
 export default defineType({
 	name: "experience",
@@ -10,31 +8,6 @@ export default defineType({
 	icon: () => <ImageIcon />,
 	type: "document",
 	fields: [
-		defineField({
-			name: "title",
-			type: "array",
-			description: "Ce texte sera affiché en titre de la popin d'introduction à l'ouverture de l'expérience",
-			title: "Titre (Fenêtre introductive)",
-			components: {
-				input: (props: ArrayOfPrimitivesInputProps<string | number | boolean, ArraySchemaType<unknown>>) => {
-					const { value, renderDefault } = props;
-					return (
-						<>
-							<TitlePreview value={value as unknown as TitleLetter[]} />
-							{renderDefault(props)}
-						</>
-					);
-				},
-			},
-			of: [
-				defineArrayMember({
-					name: "content",
-					title: "Contenu",
-					type: "content",
-				}),
-			],
-			validation: (Rule) => Rule.required().min(1),
-		}),
 		defineField({
 			title: "Description (Fenêtre Introductive)",
 			description:
@@ -65,7 +38,7 @@ export default defineType({
 			validation: (Rule) => Rule.required().assetRequired(),
 		}),
 		defineField({
-			name: `acts`,
+			name: "acts",
 			description: "Les actes de l'expérience",
 			type: `array`,
 			of: [{ type: "act" }],
