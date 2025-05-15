@@ -5,7 +5,7 @@ export default defineType({
 	name: "internalLink",
 	type: "object",
 	title: "Lien interne",
-	icon: () => <LinkIcon onResize={undefined} onResizeCapture={undefined} />,
+	icon: () => <LinkIcon />,
 	fields: [
 		defineField({
 			name: "reference",
