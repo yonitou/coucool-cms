@@ -2,6 +2,7 @@ import { defineCliConfig } from "sanity/cli";
 
 // ts-prune-ignore-next
 export default defineCliConfig({
+	studioHost: "coucool",
 	api: {
 		projectId: "4durckeb",
 		dataset: "staging",
