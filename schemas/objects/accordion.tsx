@@ -1,31 +1,33 @@
-import { defineField, defineType } from "sanity";
 import { StackIcon } from "@sanity/icons";
-import "../../styles/global.css";
+import { defineField, defineType } from "sanity";
+
 import blockEditor from "../blockEditor";
 
 export default defineType({
-	name: "accordion",
-	title: "Accordéon",
-	type: "object",
-	icon: () => <StackIcon />,
 	fields: [
 		defineField({
 			name: "title",
-			type: "string",
 			title: "Titre",
+			type: "string",
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "answers",
-			type: "array",
-			title: "Réponses",
-			validation: (Rule) => Rule.required(),
 			of: [
 				{
+					lists: blockEditor.lists,
+					marks: blockEditor.marks,
+					styles: blockEditor.styles,
 					type: "block",
-					...blockEditor,
 				},
 			],
+			title: "Réponses",
+			type: "array",
+			validation: (Rule) => Rule.required(),
 		}),
 	],
+	icon: StackIcon,
+	name: "accordion",
+	title: "Accordéon",
+	type: "object",
 });

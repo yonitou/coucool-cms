@@ -1,30 +1,44 @@
 /* eslint-disable no-console */
+// eslint-disable-next-line unicorn/prevent-abbreviations
 import { getCliClient } from "sanity/cli";
 
 const client = getCliClient({ apiVersion: "2024-01-01", dataset: "production" });
 
-const query = `*[_type == "character"]._id`;
+const run = async (): Promise<void> => {
+	const experienceIds: string[] = await client.fetch(`*[_type == "experience"]._id`);
 
-client
-	.fetch(query)
-	.then(async (ids: string[]): Promise<boolean | void> => {
-		console.log(ids);
-		if (!ids.length) {
-			console.log("No documents to delete");
-			return true;
-		}
+	if (experienceIds.length === 0) {
+		console.log("No experience documents found");
 
-		console.log(`Deleting ${ids.length} documents`);
-		return ids
-			.reduce((trx, id) => trx.delete(id), client.transaction())
-			.commit({ visibility: "async" })
-			.then(() => console.log("Done!"));
-	})
-	.catch((err) => {
-		if (err.message.includes("Insufficient permissions")) {
-			console.error(err.message);
-			console.error("Did you forget to pass `--with-user-token`?");
-		} else {
-			console.error(err.stack);
-		}
-	});
+		return;
+	}
+
+	console.log(`Found ${String(experienceIds.length)} experience documents`);
+
+	// Find assets only referenced by experience documents
+	const assetIds: string[] = await client.fetch(
+		`*[_type in ["sanity.imageAsset", "sanity.fileAsset"] && count(*[references(^._id) && _type != "experience"]) == 0 && count(*[references(^._id) && _type == "experience"]) > 0]._id`,
+	);
+
+	console.log(`Found ${String(assetIds.length)} assets exclusively referenced by experiences`);
+
+	const idsToDelete = [...experienceIds, ...assetIds];
+
+	console.log(`\nDeleting ${String(idsToDelete.length)} documents total...`);
+
+	await idsToDelete.reduce((trx, id) => trx.delete(id), client.transaction()).commit({ visibility: "async" });
+
+	console.log("Done!");
+};
+
+run().catch((error: unknown) => {
+	const errorMessage = error instanceof Error ? error.message : String(error);
+	const errorStack = error instanceof Error ? error.stack : String(error);
+
+	if (errorMessage.includes("Insufficient permissions")) {
+		console.error(errorMessage);
+		console.error("Did you forget to pass `--with-user-token`?");
+	} else {
+		console.error(errorStack);
+	}
+});

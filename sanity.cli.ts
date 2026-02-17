@@ -2,21 +2,21 @@ import { defineCliConfig } from "sanity/cli";
 
 // ts-prune-ignore-next
 export default defineCliConfig({
-	studioHost: "coucool",
 	api: {
-		projectId: "4durckeb",
 		dataset: "staging",
+		projectId: "4durckeb",
 	},
 	graphql: [
 		{
 			id: "production",
-			workspace: "production",
 			source: "production",
+			workspace: "production",
 		},
 		{
 			id: "staging",
-			workspace: "staging",
 			source: "staging",
+			workspace: "staging",
 		},
 	],
+	studioHost: "coucool",
 });

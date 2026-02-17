@@ -2,31 +2,31 @@ import { StarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-	name: "edition",
-	type: "object",
-	icon: () => <StarIcon />,
-	title: "Ancienne Édition",
 	fields: [
 		defineField({
 			name: "year",
-			type: "date",
-			title: "Année",
 			options: {
 				dateFormat: "yyyy",
 			},
+			title: "Année",
+			type: "date",
 			validation: (Rule) => {
 				return Rule.required().min("2016-01-01T00:00:00.000Z").max(new Date().toISOString());
 			},
 		}),
 	],
+	icon: StarIcon,
+	name: "edition",
 	preview: {
+		prepare({ year }) {
+			return {
+				title: String(year).split("-")[0],
+			};
+		},
 		select: {
 			year: "year",
 		},
-		prepare({ year }) {
-			return {
-				title: year?.split("-")?.[0],
-			};
-		},
 	},
+	title: "Ancienne Édition",
+	type: "object",
 });

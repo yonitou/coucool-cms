@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
-import { fontWeightEnum } from "../types/fontWeightEnum";
-import { TitleLetter } from "../types/titleLetter.interface";
+
+import { type fontWeightEnum } from "../types/fontWeightEnum";
+import { isTitleLetterArray } from "../types/titleLetter.interface";
 
 const Wrapper = styled.h2`
 	font-size: 4rem;
@@ -13,22 +14,24 @@ const Letter = styled.span<{ fontWeight: fontWeightEnum }>`
 	font-weight: ${(props) => props.fontWeight};
 `;
 
-interface TitlePreviewProps {
-	value: TitleLetter[];
+interface TitlePreviewProperties {
+	value: unknown;
 }
 
-const TitlePreview = ({ value }: TitlePreviewProps): JSX.Element => {
+const TitlePreview = ({ value }: TitlePreviewProperties): null | React.ReactElement => {
+	if (!isTitleLetterArray(value)) {
+		return null;
+	}
+
 	return (
 		<Wrapper>
-			{value &&
-				value.map((l) => {
-					return (
-						// eslint-disable-next-line no-underscore-dangle
-						<Letter fontWeight={l.fontWeight} key={l._key}>
-							{l.letter}
-						</Letter>
-					);
-				})}
+			{value.map((l) => {
+				return (
+					<Letter fontWeight={l.fontWeight} key={l._key}>
+						{l.letter}
+					</Letter>
+				);
+			})}
 		</Wrapper>
 	);
 };

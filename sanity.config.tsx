@@ -1,41 +1,34 @@
-import { defineConfig, definePlugin } from "sanity";
-import { ListItem, structureTool } from "sanity/structure";
 import { colorInput } from "@sanity/color-input";
-import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { CogIcon, ColorWheelIcon, MasterDetailIcon, RocketIcon } from "@sanity/icons";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { defineConfig, definePlugin } from "sanity";
+import { structureTool } from "sanity/structure";
 
 import { schemaTypes } from "./schemas";
 
 const sharedConfig = definePlugin({
-	name: "sharedConfig",
 	document: {
-		newDocumentOptions: (prev, { creationContext }) => {
-			if (creationContext.type === "global") {
-				return prev.filter((templateItem) => templateItem.templateId !== "siteSettings");
-			}
-			return prev;
-		},
-		actions: (prev, context) => {
-			const actionsWithoutUnpublish = prev.filter((a) => a.action !== "unpublish");
+		actions: (previous, context) => {
+			const actionsWithoutUnpublish = previous.filter((a) => a.action !== "unpublish");
+
 			return context.schemaType === "siteSettings"
-				? [
-						...actionsWithoutUnpublish.filter(
-							(originalAction) =>
-								originalAction.action !== "delete" && originalAction.action !== "duplicate",
-						),
-					]
+				? actionsWithoutUnpublish.filter(
+						(originalAction) => originalAction.action !== "delete" && originalAction.action !== "duplicate",
+					)
 				: actionsWithoutUnpublish;
 		},
+		newDocumentOptions: (previous, { creationContext }) => {
+			if (creationContext.type === "global") {
+				return previous.filter((templateItem) => templateItem.templateId !== "siteSettings");
+			}
+
+			return previous;
+		},
 	},
+	name: "sharedConfig",
 	plugins: [
 		colorInput(),
 		structureTool({
-			defaultDocumentNode: (S, context) => {
-				if (context.schemaType === "step") {
-					return S.document().views([S.view.form()]);
-				}
-				return null;
-			},
 			structure: (S, context) =>
 				S.list()
 					.title("Contenu")
@@ -45,14 +38,14 @@ const sharedConfig = definePlugin({
 							.child(S.document().schemaType("siteSettings").documentId("siteSettings"))
 							.icon(CogIcon),
 						orderableDocumentListDeskItem({
-							type: "section",
-							S,
 							context,
-							title: "Sections",
 							icon: MasterDetailIcon,
-						}) as ListItem,
+							S,
+							title: "Sections",
+							type: "section",
+						}),
 						...S.documentTypeListItems().filter(
-							(listItem) => !["siteSettings", "section"].includes(listItem.getId() as string),
+							(listItem) => !["section", "siteSettings"].includes(listItem.getId() as string),
 						),
 					]),
 		}),
@@ -66,23 +59,23 @@ const sharedConfig = definePlugin({
 // ts-prune-ignore-next
 export default defineConfig([
 	{
-		name: "production",
-		title: "Coucool - Public",
-		icon: () => <RocketIcon />,
-		projectId: "4durckeb",
-		dataset: "production",
 		basePath: "/production",
-		subtitle: "production",
+		dataset: "production",
+		icon: RocketIcon,
+		name: "production",
 		plugins: [sharedConfig()],
+		projectId: "4durckeb",
+		subtitle: "production",
+		title: "Coucool - Public",
 	},
 	{
-		name: "staging",
-		title: "Coucool - Test",
-		icon: () => <ColorWheelIcon />,
-		projectId: "4durckeb",
-		dataset: "staging",
 		basePath: "/staging",
-		subtitle: "staging",
+		dataset: "staging",
+		icon: ColorWheelIcon,
+		name: "staging",
 		plugins: [sharedConfig()],
+		projectId: "4durckeb",
+		subtitle: "staging",
+		title: "Coucool - Test",
 	},
 ]);

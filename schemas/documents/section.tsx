@@ -1,40 +1,18 @@
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
-import {
-	defineType,
-	defineField,
-	SortOrdering,
-	defineArrayMember,
-	ArrayOfPrimitivesInputProps,
-	ArraySchemaType,
-} from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
+
 import blockEditor from "../blockEditor";
-import "../../styles/global.css";
-import { fontWeightEnum } from "../types/fontWeightEnum";
-import TitlePreview from "../components/TitlePreview";
-import { TitleLetter } from "../types/titleLetter.interface";
+import TitleLetterInput from "../components/TitleLetterInput";
+import { isTitleLetterArray } from "../types/titleLetter.interface";
 
 export default defineType({
-	name: "section",
-	type: "document",
-	orderings: [orderRankOrdering as SortOrdering],
-	title: "Section",
 	fields: [
 		orderRankField({ type: "section" }),
 		defineField({
-			name: "name",
-			type: "array",
-			title: "Nom",
 			components: {
-				input: (props: ArrayOfPrimitivesInputProps<string | number | boolean, ArraySchemaType<unknown>>) => {
-					const { value, renderDefault } = props;
-					return (
-						<>
-							<TitlePreview value={value as unknown as TitleLetter[]} />
-							{renderDefault(props)}
-						</>
-					);
-				},
+				input: TitleLetterInput,
 			},
+			name: "name",
 			of: [
 				defineArrayMember({
 					name: "content",
@@ -42,36 +20,39 @@ export default defineType({
 					type: "content",
 				}),
 			],
+			title: "Nom",
+			type: "array",
 			validation: (Rule) => Rule.required().min(1),
 		}),
 		defineField({
-			title: "Slug",
 			name: "slug",
-			type: "slug",
-			validation: (Rule) => Rule.required(),
 			options: {
+				maxLength: 50,
 				slugify: (input) => {
-					const newInput = input as unknown as TitleLetter[];
-					const slug = newInput
-						.map((d: TitleLetter) => d.letter.toLowerCase())
-						.join("")
-						.replace(/[^A-zÀ-ú]+/g, "-")
-						.slice(0, 200);
+					if (!isTitleLetterArray(input)) {
+						return "";
+					}
 
-					return slug;
+					return input
+						.map((d) => d.letter.toLowerCase())
+						.join("")
+						.replaceAll(/[^A-zÀ-ú]+/g, "-")
+						.slice(0, 200);
 				},
 				source: "name",
-				maxLength: 50,
 			},
+			title: "Slug",
+			type: "slug",
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "content",
-			type: "array",
-			title: "Contenu",
 			of: [
 				{
+					lists: blockEditor.lists,
+					marks: blockEditor.marks,
+					styles: blockEditor.styles,
 					type: "block",
-					...blockEditor,
 				},
 				defineField({
 					name: "accordion",
@@ -83,28 +64,42 @@ export default defineType({
 					title: "Ancienne édition",
 					type: "edition",
 				}),
+				defineField({
+					name: "button",
+					title: "Bouton",
+					type: "button",
+				}),
 			],
+			title: "Contenu",
+			type: "array",
 		}),
 	],
+	name: "section",
+	orderings: [orderRankOrdering],
 	preview: {
-		select: {
-			title: "name",
-		},
 		prepare({ title }) {
-			return {
-				title: title?.map((l: TitleLetter) => l.letter.toUpperCase()).join(""),
+			if (!isTitleLetterArray(title)) {
+				return { title: "" };
+			}
 
+			return {
 				media: (
 					<span
 						className="preview-letter"
 						style={{
-							fontWeight: `${title?.[0].fontWeight as fontWeightEnum}`,
+							fontWeight: title[0]?.fontWeight,
 						}}
 					>
-						{title[0].letter}
+						{title[0]?.letter}
 					</span>
 				),
+				title: title.map((l) => l.letter.toUpperCase()).join(""),
 			};
 		},
+		select: {
+			title: "name",
+		},
 	},
+	title: "Section",
+	type: "document",
 });

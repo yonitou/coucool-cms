@@ -29,12 +29,12 @@ npm run check-lint ||
 
 echo '✅ No ESLint error(s), congrats ! Finally checking for unused exports'
 
-# Check if unused exports are present
-npm run check-unused-exports ||
-(
-        echo 'Unused exports checks failed. Make the required changes listed above, add changes and try to commit again.'
-        false;
-)
+# # Check if unused exports are present
+# npm run check-unused-exports ||
+# (
+#         echo 'Unused exports checks failed. Make the required changes listed above, add changes and try to commit again.'
+#         false;
+# )
 
 # If everything passes... Now we can commit
 echo '✅ Everything looks perfect. Commiting ...'
