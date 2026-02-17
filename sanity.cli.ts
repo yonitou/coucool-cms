@@ -6,6 +6,9 @@ export default defineCliConfig({
 		dataset: "staging",
 		projectId: "4durckeb",
 	},
+	deployment: {
+		appId: "1cecbbc8f236f2ea88fb524d",
+	},
 	graphql: [
 		{
 			id: "production",
